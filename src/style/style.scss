@@ -1,0 +1,47 @@
+.body {
+	height: 100vh;
+	display: flex;
+	font-family: $roboto;
+
+	.col {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+	}
+
+	.color {
+		font-size: 1.6em;
+
+		padding: 10px;
+		color: #fff;
+		border-radius: 10px;
+		transition: background 0.3s;
+		
+		&:hover {
+			background-color: rgba(0, 0, 0, 0.1);
+			cursor: pointer;
+		}
+	}
+
+	.btn {
+		outline: none;
+		border: none;
+		background: transparent;
+		padding: 10px;
+		border-radius: 10px;
+		transition: background 0.3s;
+		color: #fff;
+		font-size: 1.6em;
+
+		&:hover {
+			background-color: rgba(0, 0, 0, 0.1);
+			cursor: pointer;
+		}
+	}
+
+	@media screen and (max-width: 760px){
+		flex-direction: column;
+	}
+}
