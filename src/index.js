@@ -4,6 +4,19 @@ import("./index.scss");
 const column = document.querySelectorAll(".col");
 const textColor = document.querySelectorAll(".color");
 
+window.onload = () => {
+  console.log(window.innerWidth);
+  if (window.innerWidth < 760) {
+    document.querySelectorAll(".col").forEach((element) => {
+      element.addEventListener("click", (e) => {
+        if (e.target.classList.value.toLocaleLowerCase() === "col") {
+          setColor();
+        }
+      });
+    });
+  }
+};
+
 textColor.forEach((element) => {
   element.addEventListener("click", () => {
     document.execCommand("copy"); // obsolete
@@ -39,26 +52,30 @@ function setColor(isLoaded) {
   let colorsArray = isLoaded ? getColorsFromHash() : [];
 
   column.forEach((element, index) => {
-	  const text = element.querySelector(".color")
+    const text = element.querySelector(".color");
     if (
       element.querySelector("i").classList.value === "fa-solid fa-lock-open"
     ) {
-		 const button = element.querySelector(".btn");
-		 const color = isLoaded ? colorsArray[index] ? colorsArray [index] : chroma.random() : chroma.random();
+      const button = element.querySelector(".btn");
+      const color = isLoaded
+        ? colorsArray[index]
+          ? colorsArray[index]
+          : chroma.random()
+        : chroma.random();
 
       text.textContent = color;
       element.style.background = color;
 
-		if(!isLoaded) {
-			colorsArray.push(color);
-		}
+      if (!isLoaded) {
+        colorsArray.push(color);
+      }
 
       setTextColor(text, button, color);
     } else {
-		colorsArray.push(text.textContent)
-	 }
+      colorsArray.push(text.textContent);
+    }
   });
-  console.log(getColorsFromHash())
+  console.log(getColorsFromHash());
   updeteColorHash(colorsArray);
 }
 
